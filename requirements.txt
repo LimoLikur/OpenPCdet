@@ -1,0 +1,27 @@
+numpy
+llvmlite
+numba
+#torch>=1.1
+tensorboardX
+easydict
+pyyaml
+scikit-image
+tqdm
+torchvision
+SharedArray
+opencv-python
+pyquaternion
+Open3d
+# Karena menggunakan RTX 4050 
+# ==== indeks wheel CUDA 11.8 untuk PyTorch ====
+--extra-index-url https://download.pytorch.org/whl/cu118
+
+# ==== PyTorch + CUDA 11.8 ====
+torch==1.13.1+cu118
+torchvision==0.14.1+cu118
+torchaudio==0.13.1+cu118
+
+# ==== spconv stack (cocok dengan cu118 & Torch 1.13) ====
+spconv-cu118==2.3.8
+cumm-cu118==0.4.11
+ninja==1.11.1.1

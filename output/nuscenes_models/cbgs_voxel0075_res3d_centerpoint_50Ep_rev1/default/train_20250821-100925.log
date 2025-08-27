@@ -1,0 +1,708 @@
+2025-08-21 10:09:25,150   INFO  **********************Start logging**********************
+2025-08-21 10:09:25,150   INFO  CUDA_VISIBLE_DEVICES=ALL
+2025-08-21 10:09:25,150   INFO  Training with a single process
+2025-08-21 10:09:25,151   INFO  cfg_file         cfgs/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1.yaml
+2025-08-21 10:09:25,151   INFO  batch_size       4
+2025-08-21 10:09:25,151   INFO  epochs           50
+2025-08-21 10:09:25,151   INFO  workers          4
+2025-08-21 10:09:25,151   INFO  extra_tag        default
+2025-08-21 10:09:25,151   INFO  ckpt             None
+2025-08-21 10:09:25,151   INFO  pretrained_model None
+2025-08-21 10:09:25,152   INFO  launcher         none
+2025-08-21 10:09:25,152   INFO  tcp_port         18888
+2025-08-21 10:09:25,152   INFO  sync_bn          False
+2025-08-21 10:09:25,152   INFO  fix_random_seed  False
+2025-08-21 10:09:25,152   INFO  ckpt_save_interval 1
+2025-08-21 10:09:25,152   INFO  local_rank       None
+2025-08-21 10:09:25,152   INFO  max_ckpt_save_num 30
+2025-08-21 10:09:25,152   INFO  merge_all_iters_to_one_epoch False
+2025-08-21 10:09:25,152   INFO  set_cfgs         None
+2025-08-21 10:09:25,152   INFO  max_waiting_mins 0
+2025-08-21 10:09:25,152   INFO  start_epoch      0
+2025-08-21 10:09:25,152   INFO  num_epochs_to_eval 0
+2025-08-21 10:09:25,153   INFO  save_to_file     False
+2025-08-21 10:09:25,153   INFO  use_tqdm_to_record False
+2025-08-21 10:09:25,153   INFO  logger_iter_interval 50
+2025-08-21 10:09:25,153   INFO  ckpt_save_time_interval 300
+2025-08-21 10:09:25,153   INFO  wo_gpu_stat      False
+2025-08-21 10:09:25,153   INFO  use_amp          False
+2025-08-21 10:09:25,153   INFO  cfg.ROOT_DIR: /home/lidar/OpenPCDet
+2025-08-21 10:09:25,153   INFO  cfg.LOCAL_RANK: 0
+2025-08-21 10:09:25,153   INFO  cfg.CLASS_NAMES: ['car', 'truck', 'construction_vehicle', 'bus', 'trailer', 'barrier', 'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone']
+2025-08-21 10:09:25,153   INFO  ----------- DATA_CONFIG -----------
+2025-08-21 10:09:25,153   INFO  cfg.DATA_CONFIG.DATASET: NuScenesDataset
+2025-08-21 10:09:25,154   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/nuscenes
+2025-08-21 10:09:25,154   INFO  cfg.DATA_CONFIG.VERSION: v1.0-mini
+2025-08-21 10:09:25,154   INFO  cfg.DATA_CONFIG.MAX_SWEEPS: 10
+2025-08-21 10:09:25,154   INFO  cfg.DATA_CONFIG.PRED_VELOCITY: True
+2025-08-21 10:09:25,154   INFO  cfg.DATA_CONFIG.SET_NAN_VELOCITY_TO_ZEROS: True
+2025-08-21 10:09:25,154   INFO  cfg.DATA_CONFIG.FILTER_MIN_POINTS_IN_GT: 1
+2025-08-21 10:09:25,154   INFO  ----------- DATA_SPLIT -----------
+2025-08-21 10:09:25,155   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2025-08-21 10:09:25,156   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2025-08-21 10:09:25,156   INFO  ----------- INFO_PATH -----------
+2025-08-21 10:09:25,156   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['nuscenes_infos_10sweeps_train.pkl']
+2025-08-21 10:09:25,156   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['nuscenes_infos_10sweeps_val.pkl']
+2025-08-21 10:09:25,156   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+2025-08-21 10:09:25,156   INFO  cfg.DATA_CONFIG.BALANCED_RESAMPLING: True
+2025-08-21 10:09:25,157   INFO  ----------- DATA_AUGMENTOR -----------
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'DB_INFO_PATH': ['nuscenes_dbinfos_10sweeps_withvelo.pkl'], 'PREPARE': {'filter_by_min_points': ['car:5', 'truck:5', 'construction_vehicle:5', 'bus:5', 'trailer:5', 'barrier:5', 'motorcycle:5', 'bicycle:5', 'pedestrian:5', 'traffic_cone:5']}, 'SAMPLE_GROUPS': ['car:2', 'truck:3', 'construction_vehicle:9', 'bus:4', 'trailer:8', 'barrier:3', 'motorcycle:6', 'bicycle:8', 'pedestrian:2', 'traffic_cone:3'], 'NUM_POINT_FEATURES': 5, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': True}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x', 'y']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.9, 1.1]}, {'NAME': 'random_world_translation', 'NOISE_TRANSLATE_STD': [0.5, 0.5, 0.5]}]
+2025-08-21 10:09:25,157   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp']
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp']
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': True}}, {'NAME': 'transform_points_to_voxels', 'VOXEL_SIZE': [0.075, 0.075, 0.2], 'MAX_POINTS_PER_VOXEL': 10, 'MAX_NUMBER_OF_VOXELS': {'train': 120000, 'test': 160000}}]
+2025-08-21 10:09:25,157   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/nuscenes_dataset.yaml
+2025-08-21 10:09:25,157   INFO  ----------- MODEL -----------
+2025-08-21 10:09:25,157   INFO  cfg.MODEL.NAME: CenterPoint
+2025-08-21 10:09:25,158   INFO  ----------- VFE -----------
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.VFE.NAME: MeanVFE
+2025-08-21 10:09:25,158   INFO  ----------- BACKBONE_3D -----------
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.BACKBONE_3D.NAME: VoxelResBackBone8x
+2025-08-21 10:09:25,158   INFO  ----------- MAP_TO_BEV -----------
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.MAP_TO_BEV.NAME: HeightCompression
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 256
+2025-08-21 10:09:25,158   INFO  ----------- BACKBONE_2D -----------
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.BACKBONE_2D.NAME: BaseBEVBackbone
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [5, 5]
+2025-08-21 10:09:25,158   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [1, 2]
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [128, 256]
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2]
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [256, 256]
+2025-08-21 10:09:25,159   INFO  ----------- DENSE_HEAD -----------
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.DENSE_HEAD.NAME: CenterHead
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.DENSE_HEAD.CLASS_NAMES_EACH_HEAD: [['car'], ['truck', 'construction_vehicle'], ['bus', 'trailer'], ['barrier'], ['motorcycle', 'bicycle'], ['pedestrian', 'traffic_cone']]
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.DENSE_HEAD.SHARED_CONV_CHANNEL: 64
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.DENSE_HEAD.USE_BIAS_BEFORE_NORM: True
+2025-08-21 10:09:25,159   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2025-08-21 10:09:25,160   INFO  ----------- SEPARATE_HEAD_CFG -----------
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['center', 'center_z', 'dim', 'rot', 'vel']
+2025-08-21 10:09:25,160   INFO  ----------- HEAD_DICT -----------
+2025-08-21 10:09:25,160   INFO  ----------- center -----------
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.out_channels: 2
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.num_conv: 2
+2025-08-21 10:09:25,160   INFO  ----------- center_z -----------
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.out_channels: 1
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center_z.num_conv: 2
+2025-08-21 10:09:25,160   INFO  ----------- dim -----------
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.out_channels: 3
+2025-08-21 10:09:25,160   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.num_conv: 2
+2025-08-21 10:09:25,160   INFO  ----------- rot -----------
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.out_channels: 2
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.num_conv: 2
+2025-08-21 10:09:25,161   INFO  ----------- vel -----------
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.vel.out_channels: 2
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.vel.num_conv: 2
+2025-08-21 10:09:25,161   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 8
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NUM_MAX_OBJS: 500
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2025-08-21 10:09:25,161   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2025-08-21 10:09:25,161   INFO  ----------- LOSS_CONFIG -----------
+2025-08-21 10:09:25,161   INFO  ----------- LOSS_WEIGHTS -----------
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.2
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 0.25
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.2, 0.2, 1.0, 1.0]
+2025-08-21 10:09:25,162   INFO  ----------- POST_PROCESSING -----------
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.2
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_LIMIT_RANGE: [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.MAX_OBJ_PER_SAMPLE: 500
+2025-08-21 10:09:25,162   INFO  ----------- NMS_CONFIG -----------
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.15
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 1000
+2025-08-21 10:09:25,162   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 64
+2025-08-21 10:09:25,162   INFO  ----------- POST_PROCESSING -----------
+2025-08-21 10:09:25,163   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2025-08-21 10:09:25,163   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: nuscenes
+2025-08-21 10:09:25,163   INFO  ----------- OPTIMIZATION -----------
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 50
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.LR: 0.001
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.PCT_START: 0.5
+2025-08-21 10:09:25,163   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2025-08-21 10:09:25,164   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2025-08-21 10:09:25,164   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2025-08-21 10:09:25,164   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2025-08-21 10:09:25,164   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2025-08-21 10:09:25,164   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2025-08-21 10:09:25,164   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2025-08-21 10:09:25,164   INFO  cfg.TAG: cbgs_voxel0075_res3d_centerpoint_50Ep_rev1
+2025-08-21 10:09:25,164   INFO  cfg.EXP_GROUP_PATH: nuscenes_models
+2025-08-21 10:09:25,175   INFO  ----------- Create dataloader & network & optimizer -----------
+2025-08-21 10:09:25,242   INFO  Database filter by min points car: 4082 => 3303
+2025-08-21 10:09:25,242   INFO  Database filter by min points truck: 451 => 412
+2025-08-21 10:09:25,242   INFO  Database filter by min points construction_vehicle: 174 => 161
+2025-08-21 10:09:25,242   INFO  Database filter by min points bus: 337 => 309
+2025-08-21 10:09:25,242   INFO  Database filter by min points trailer: 59 => 57
+2025-08-21 10:09:25,243   INFO  Database filter by min points barrier: 1851 => 1741
+2025-08-21 10:09:25,243   INFO  Database filter by min points motorcycle: 179 => 149
+2025-08-21 10:09:25,243   INFO  Database filter by min points bicycle: 147 => 136
+2025-08-21 10:09:25,243   INFO  Database filter by min points pedestrian: 3068 => 2799
+2025-08-21 10:09:25,244   INFO  Database filter by min points traffic_cone: 773 => 635
+2025-08-21 10:09:25,245   INFO  Loading NuScenes dataset
+2025-08-21 10:09:25,284   INFO  Total samples for NuScenes dataset: 323
+2025-08-21 10:09:25,289   INFO  Total samples after balanced resampling: 1630
+2025-08-21 10:09:28,252   INFO  ==> Loading parameters from checkpoint /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model.pth to GPU
+2025-08-21 10:09:28,777   INFO  ==> Loading optimizer parameters from checkpoint /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model.pth to GPU
+2025-08-21 10:09:28,781   INFO  ==> Done
+2025-08-21 10:09:28,785   INFO  ----------- Model CenterPoint created, param count: 8941590 -----------
+2025-08-21 10:09:28,785   INFO  CenterPoint(
+  (vfe): MeanVFE()
+  (backbone_3d): VoxelResBackBone8x(
+    (conv_input): SparseSequential(
+      (0): SubMConv3d(5, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (conv1): SparseSequential(
+      (0): SparseBasicBlock(
+        (conv1): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv2): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(16, 32, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv3): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(32, 64, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv4): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(64, 128, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[0, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv_out): SparseSequential(
+      (0): SparseConv3d(128, 128, kernel_size=[3, 1, 1], stride=[2, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (map_to_bev_module): HeightCompression()
+  (pfe): None
+  (backbone_2d): BaseBEVBackbone(
+    (blocks): ModuleList(
+      (0): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(256, 128, kernel_size=(3, 3), stride=(1, 1), bias=False)
+        (2): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+      (1): Sequential(
+        (0): ZeroPad2d((1, 1, 1, 1))
+        (1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        (2): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (3): ReLU()
+        (4): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (5): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (8): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (9): ReLU()
+        (10): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (11): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (12): ReLU()
+        (13): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (14): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (15): ReLU()
+        (16): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (17): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (18): ReLU()
+      )
+    )
+    (deblocks): ModuleList(
+      (0): Sequential(
+        (0): ConvTranspose2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): ConvTranspose2d(256, 256, kernel_size=(2, 2), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+  )
+  (dense_head): CenterHead(
+    (shared_conv): Sequential(
+      (0): Conv2d(512, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (heads_list): ModuleList(
+      (0): SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (vel): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (1-2): 2 x SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (vel): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (3): SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (vel): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+      (4-5): 2 x SeparateHead(
+        (center): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (center_z): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (dim): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (rot): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (vel): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (hm): Sequential(
+          (0): Sequential(
+            (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+            (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): ReLU()
+          )
+          (1): Conv2d(64, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+      )
+    )
+    (hm_loss_func): FocalLossCenterNet()
+    (reg_loss_func): RegLossCenterNet()
+  )
+  (point_head): None
+  (roi_head): None
+)
+2025-08-21 10:09:28,790   INFO  **********************Start training nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1(default)**********************
+2025-08-21 10:15:54,434   INFO  Train:   32/50 ( 64%) [ 117/408 ( 29%)]  Loss: 4.194 (4.19)  LR: 8.519e-04  Time cost: 06:25/31:08:44 [06:25/817:10:21]  Acc_iter 12766       Data time: 8.78(8.78)  Forward time: 376.52(376.52)  Batch time: 385.30(385.30)
+2025-08-21 10:15:55,503   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:19:03,151   INFO  Train:   32/50 ( 64%) [ 151/408 ( 37%)]  Loss: 4.723 (4.40)  LR: 8.482e-04  Time cost: 09:34/1:10:14 [09:34/34:37:42]  Acc_iter 12800       Data time: 2.42(2.59)  Forward time: 5.28(13.67)  Batch time: 7.69(16.25)
+2025-08-21 10:19:30,442   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:23:39,169   INFO  Train:   32/50 ( 64%) [ 201/408 ( 49%)]  Loss: 5.628 (4.43)  LR: 8.426e-04  Time cost: 14:10/34:30 [14:10/20:58:33]  Acc_iter 12850       Data time: 2.90(2.58)  Forward time: 2.30(7.39)  Batch time: 5.20(9.97)
+2025-08-21 10:24:31,191   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:28:19,146   INFO  Train:   32/50 ( 64%) [ 251/408 ( 62%)]  Loss: 4.560 (4.48)  LR: 8.370e-04  Time cost: 18:50/21:54 [18:50/17:26:27]  Acc_iter 12900       Data time: 2.45(2.54)  Forward time: 3.50(5.81)  Batch time: 5.95(8.35)
+2025-08-21 10:28:19,280   INFO  
+2025-08-21 10:29:30,019   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:32:44,744   INFO  Train:   32/50 ( 64%) [ 301/408 ( 74%)]  Loss: 4.618 (4.45)  LR: 8.312e-04  Time cost: 23:15/13:27 [23:15/15:36:49]  Acc_iter 12950       Data time: 2.45(2.53)  Forward time: 2.30(5.00)  Batch time: 4.74(7.53)
+2025-08-21 10:34:31,160   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:37:15,458   INFO  Train:   32/50 ( 64%) [ 351/408 ( 86%)]  Loss: 5.501 (4.43)  LR: 8.254e-04  Time cost: 27:46/06:44 [27:46/14:34:38]  Acc_iter 13000       Data time: 2.73(2.53)  Forward time: 2.53(4.55)  Batch time: 5.26(7.08)
+2025-08-21 10:39:30,955   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:41:55,212   INFO  Train:   32/50 ( 64%) [ 401/408 ( 98%)]  Loss: 5.305 (4.42)  LR: 8.195e-04  Time cost: 32:26/00:47 [32:26/13:56:35]  Acc_iter 13050       Data time: 2.64(2.52)  Forward time: 4.73(4.29)  Batch time: 7.37(6.81)
+2025-08-21 10:41:55,310   INFO  
+2025-08-21 10:42:23,311   INFO  Train:   32/50 ( 64%) [ 407/408 (100%)]  Loss: 5.212 (4.44)  LR: 8.188e-04  Time cost: 32:54/00:06 [32:54/13:50:29]  Acc_iter 13056       Data time: 2.81(2.53)  Forward time: 3.47(4.26)  Batch time: 6.27(6.78)
+2025-08-21 10:42:35,489   INFO  Train:   33/50 ( 66%) [   0/408 (  0%)]  Loss: 4.488 (4.49)  LR: 8.187e-04  Time cost: 00:11/1:16:36 [33:06/22:58:56]  Acc_iter 13057       Data time: 4.86(4.86)  Forward time: 3.91(3.91)  Batch time: 8.77(8.77)
+2025-08-21 10:46:20,994   INFO  Train:   33/50 ( 66%) [  43/408 ( 11%)]  Loss: 4.194 (4.16)  LR: 8.136e-04  Time cost: 03:56/32:44 [36:52/10:54:47]  Acc_iter 13100       Data time: 2.44(2.42)  Forward time: 3.25(2.95)  Batch time: 5.69(5.37)
+2025-08-21 10:47:29,020   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:50:35,659   INFO  Train:   33/50 ( 66%) [  93/408 ( 23%)]  Loss: 4.632 (4.34)  LR: 8.075e-04  Time cost: 08:11/27:26 [41:06/10:31:48]  Acc_iter 13150       Data time: 2.52(2.33)  Forward time: 2.58(2.88)  Batch time: 5.10(5.20)
+2025-08-21 10:52:29,381   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:55:08,271   INFO  Train:   33/50 ( 66%) [ 143/408 ( 35%)]  Loss: 3.912 (4.34)  LR: 8.014e-04  Time cost: 12:44/23:26 [45:39/10:36:47]  Acc_iter 13200       Data time: 2.35(2.39)  Forward time: 2.51(2.90)  Batch time: 4.86(5.29)
+2025-08-21 10:55:08,385   INFO  
+2025-08-21 10:57:29,674   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 10:59:50,099   INFO  Train:   33/50 ( 66%) [ 193/408 ( 47%)]  Loss: 4.036 (4.31)  LR: 7.953e-04  Time cost: 17:25/19:19 [50:21/10:42:31]  Acc_iter 13250       Data time: 2.34(2.46)  Forward time: 3.82(2.92)  Batch time: 6.16(5.38)
+2025-08-21 11:02:29,493   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:04:34,104   INFO  Train:   33/50 ( 66%) [ 243/408 ( 60%)]  Loss: 4.697 (4.30)  LR: 7.890e-04  Time cost: 22:09/14:59 [55:05/10:45:02]  Acc_iter 13300       Data time: 2.40(2.48)  Forward time: 3.63(2.96)  Batch time: 6.03(5.44)
+2025-08-21 11:07:26,054   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:09:10,506   INFO  Train:   33/50 ( 66%) [ 293/408 ( 72%)]  Loss: 3.332 (4.29)  LR: 7.827e-04  Time cost: 26:46/10:28 [59:41/10:42:03]  Acc_iter 13350       Data time: -0.56(2.46)  Forward time: 2.84(3.00)  Batch time: 2.27(5.45)
+2025-08-21 11:09:10,619   INFO  
+2025-08-21 11:12:27,505   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:13:46,909   INFO  Train:   33/50 ( 66%) [ 343/408 ( 84%)]  Loss: 3.913 (4.30)  LR: 7.763e-04  Time cost: 31:22/05:55 [1:04:18/10:38:35]  Acc_iter 13400       Data time: 2.36(2.49)  Forward time: 2.76(2.98)  Batch time: 5.13(5.47)
+2025-08-21 11:17:26,236   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:18:04,622   INFO  Train:   33/50 ( 66%) [ 393/408 ( 96%)]  Loss: 4.611 (4.28)  LR: 7.699e-04  Time cost: 35:40/01:21 [1:08:35/10:29:21]  Acc_iter 13450       Data time: -0.03(2.48)  Forward time: 2.97(2.95)  Batch time: 2.93(5.43)
+2025-08-21 11:19:15,570   INFO  Train:   33/50 ( 66%) [ 407/408 (100%)]  Loss: 6.065 (4.28)  LR: 7.680e-04  Time cost: 36:51/00:05 [1:09:46/10:26:38]  Acc_iter 13464       Data time: 2.78(2.47)  Forward time: 1.87(2.95)  Batch time: 4.65(5.42)
+2025-08-21 11:19:25,598   INFO  Train:   34/50 ( 68%) [   0/408 (  0%)]  Loss: 3.874 (3.87)  LR: 7.679e-04  Time cost: 00:09/1:03:48 [1:09:56/18:04:50]  Acc_iter 13465       Data time: 3.55(3.55)  Forward time: 3.43(3.43)  Batch time: 6.98(6.98)
+2025-08-21 11:22:31,979   INFO  Train:   34/50 ( 68%) [  35/408 (  9%)]  Loss: 3.655 (4.24)  LR: 7.633e-04  Time cost: 03:15/33:48 [1:13:03/10:25:27]  Acc_iter 13500       Data time: 0.01(2.25)  Forward time: 2.62(3.12)  Batch time: 2.63(5.37)
+2025-08-21 11:22:32,072   INFO  
+2025-08-21 11:24:21,026   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:27:03,762   INFO  Train:   34/50 ( 68%) [  85/408 ( 21%)]  Loss: 4.978 (4.32)  LR: 7.568e-04  Time cost: 07:47/29:16 [1:17:34/10:20:46]  Acc_iter 13550       Data time: 2.59(2.30)  Forward time: 2.93(3.11)  Batch time: 5.52(5.41)
+2025-08-21 11:29:24,649   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:31:40,775   INFO  Train:   34/50 ( 68%) [ 135/408 ( 33%)]  Loss: 5.732 (4.18)  LR: 7.501e-04  Time cost: 12:24/24:54 [1:22:11/10:20:33]  Acc_iter 13600       Data time: 2.72(2.40)  Forward time: 2.93(3.06)  Batch time: 5.64(5.46)
+2025-08-21 11:34:16,658   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:35:47,171   INFO  Train:   34/50 ( 68%) [ 185/408 ( 45%)]  Loss: 4.213 (4.19)  LR: 7.434e-04  Time cost: 16:30/19:48 [1:26:18/9:59:27]  Acc_iter 13650       Data time: 2.35(2.37)  Forward time: 3.18(2.96)  Batch time: 5.53(5.33)
+2025-08-21 11:35:47,281   INFO  
+2025-08-21 11:39:20,874   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:40:28,067   INFO  Train:   34/50 ( 68%) [ 235/408 ( 58%)]  Loss: 3.607 (4.17)  LR: 7.367e-04  Time cost: 21:11/15:32 [1:30:59/10:01:53]  Acc_iter 13700       Data time: 2.50(2.38)  Forward time: 3.36(3.00)  Batch time: 5.85(5.38)
+2025-08-21 11:44:20,986   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:45:09,905   INFO  Train:   34/50 ( 68%) [ 285/408 ( 70%)]  Loss: 3.159 (4.14)  LR: 7.299e-04  Time cost: 25:53/11:08 [1:35:41/10:02:11]  Acc_iter 13750       Data time: 3.01(2.41)  Forward time: 2.86(3.01)  Batch time: 5.87(5.42)
+2025-08-21 11:49:18,032   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:49:51,488   INFO  Train:   34/50 ( 68%) [ 335/408 ( 82%)]  Loss: 4.619 (4.14)  LR: 7.230e-04  Time cost: 30:35/06:38 [1:40:22/10:00:55]  Acc_iter 13800       Data time: 4.86(2.44)  Forward time: 3.46(3.01)  Batch time: 8.32(5.45)
+2025-08-21 11:49:51,599   INFO  
+2025-08-21 11:54:07,198   INFO  Train:   34/50 ( 68%) [ 385/408 ( 94%)]  Loss: 3.326 (4.10)  LR: 7.161e-04  Time cost: 34:50/02:04 [1:44:38/9:51:27]  Acc_iter 13850       Data time: -0.36(2.43)  Forward time: 3.29(2.98)  Batch time: 2.93(5.41)
+2025-08-21 11:54:17,688   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 11:56:05,073   INFO  Train:   34/50 ( 68%) [ 407/408 (100%)]  Loss: 3.926 (4.09)  LR: 7.130e-04  Time cost: 36:48/00:05 [1:46:36/9:49:07]  Acc_iter 13872       Data time: -0.34(2.43)  Forward time: 3.10(2.98)  Batch time: 2.77(5.41)
+2025-08-21 11:56:15,100   INFO  Train:   35/50 ( 70%) [   0/408 (  0%)]  Loss: 3.815 (3.81)  LR: 7.129e-04  Time cost: 00:09/1:03:20 [1:46:46/16:53:31]  Acc_iter 13873       Data time: 3.73(3.73)  Forward time: 3.21(3.21)  Batch time: 6.94(6.94)
+2025-08-21 11:58:59,440   INFO  Train:   35/50 ( 70%) [  27/408 (  7%)]  Loss: 4.978 (4.06)  LR: 7.091e-04  Time cost: 02:53/39:22 [1:49:30/11:11:59]  Acc_iter 13900       Data time: 2.38(2.93)  Forward time: 3.27(3.27)  Batch time: 5.66(6.20)
+2025-08-21 12:01:10,518   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:03:14,172   INFO  Train:   35/50 ( 70%) [  77/408 ( 19%)]  Loss: 3.548 (4.03)  LR: 7.021e-04  Time cost: 07:08/30:17 [1:53:45/9:50:29]  Acc_iter 13950       Data time: 2.41(2.51)  Forward time: 2.71(2.95)  Batch time: 5.12(5.46)
+2025-08-21 12:03:14,281   INFO  
+2025-08-21 12:06:06,699   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:07:56,637   INFO  Train:   35/50 ( 70%) [ 127/408 ( 31%)]  Loss: 5.686 (4.01)  LR: 6.950e-04  Time cost: 11:50/26:00 [1:58:27/9:52:28]  Acc_iter 14000       Data time: 0.41(2.49)  Forward time: 2.84(3.04)  Batch time: 3.25(5.53)
+2025-08-21 12:11:12,385   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:12:35,387   INFO  Train:   35/50 ( 70%) [ 177/408 ( 43%)]  Loss: 3.979 (4.03)  LR: 6.879e-04  Time cost: 16:29/21:24 [2:03:06/9:48:28]  Acc_iter 14050       Data time: 2.24(2.49)  Forward time: 3.88(3.05)  Batch time: 6.12(5.54)
+2025-08-21 12:16:06,789   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:17:15,985   INFO  Train:   35/50 ( 70%) [ 227/408 ( 56%)]  Loss: 3.914 (4.04)  LR: 6.808e-04  Time cost: 21:10/16:48 [2:07:47/9:45:03]  Acc_iter 14100       Data time: 2.51(2.53)  Forward time: 2.72(3.04)  Batch time: 5.23(5.57)
+2025-08-21 12:17:16,106   INFO  
+2025-08-21 12:21:11,346   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:21:53,195   INFO  Train:   35/50 ( 70%) [ 277/408 ( 68%)]  Loss: 3.743 (4.01)  LR: 6.736e-04  Time cost: 25:47/12:09 [2:12:24/9:39:54]  Acc_iter 14150       Data time: 5.15(2.55)  Forward time: 1.90(3.01)  Batch time: 7.06(5.56)
+2025-08-21 12:26:07,844   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:26:41,369   INFO  Train:   35/50 ( 70%) [ 327/408 ( 80%)]  Loss: 5.186 (4.00)  LR: 6.663e-04  Time cost: 30:35/07:33 [2:17:12/9:38:22]  Acc_iter 14200       Data time: 2.75(2.55)  Forward time: 1.52(3.03)  Batch time: 4.27(5.58)
+2025-08-21 12:31:10,119   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:31:40,029   INFO  Train:   35/50 ( 70%) [ 377/408 ( 92%)]  Loss: 3.763 (4.00)  LR: 6.590e-04  Time cost: 35:34/02:55 [2:22:11/9:38:49]  Acc_iter 14250       Data time: -0.10(2.56)  Forward time: 3.07(3.07)  Batch time: 2.97(5.64)
+2025-08-21 12:31:40,135   INFO  
+2025-08-21 12:34:17,743   INFO  Train:   35/50 ( 70%) [ 407/408 (100%)]  Loss: 2.844 (3.99)  LR: 6.547e-04  Time cost: 38:11/00:05 [2:24:48/9:33:04]  Acc_iter 14280       Data time: 2.69(2.55)  Forward time: 1.74(3.07)  Batch time: 4.42(5.62)
+2025-08-21 12:34:34,284   INFO  Train:   36/50 ( 72%) [   0/408 (  0%)]  Loss: 3.606 (3.61)  LR: 6.545e-04  Time cost: 00:15/1:46:32 [2:25:05/26:38:04]  Acc_iter 14281       Data time: 2.90(2.90)  Forward time: 7.65(7.65)  Batch time: 10.56(10.56)
+2025-08-21 12:36:16,357   INFO  Train:   36/50 ( 72%) [  19/408 (  5%)]  Loss: 3.309 (4.29)  LR: 6.517e-04  Time cost: 01:57/38:10 [2:26:47/9:58:36]  Acc_iter 14300       Data time: 2.73(2.66)  Forward time: 3.53(3.10)  Batch time: 6.26(5.76)
+2025-08-21 12:39:19,078   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:40:47,187   INFO  Train:   36/50 ( 72%) [  69/408 ( 17%)]  Loss: 3.763 (3.84)  LR: 6.444e-04  Time cost: 06:28/31:21 [2:31:18/9:19:49]  Acc_iter 14350       Data time: 3.11(2.59)  Forward time: 2.61(2.92)  Batch time: 5.73(5.52)
+2025-08-21 12:44:20,473   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:45:28,115   INFO  Train:   36/50 ( 72%) [ 119/408 ( 29%)]  Loss: 3.891 (3.85)  LR: 6.370e-04  Time cost: 11:09/26:52 [2:35:59/9:18:00]  Acc_iter 14400       Data time: 2.49(2.49)  Forward time: 3.46(3.07)  Batch time: 5.95(5.56)
+2025-08-21 12:45:28,228   INFO  
+2025-08-21 12:49:23,652   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:49:49,349   INFO  Train:   36/50 ( 72%) [ 169/408 ( 41%)]  Loss: 4.493 (3.87)  LR: 6.296e-04  Time cost: 15:30/21:48 [2:40:20/9:03:01]  Acc_iter 14450       Data time: 2.65(2.51)  Forward time: 3.48(2.95)  Batch time: 6.14(5.46)
+2025-08-21 12:54:12,317   INFO  Train:   36/50 ( 72%) [ 219/408 ( 54%)]  Loss: 3.454 (3.88)  LR: 6.221e-04  Time cost: 19:53/17:05 [2:44:43/8:53:38]  Acc_iter 14500       Data time: 2.44(2.46)  Forward time: 3.16(2.96)  Batch time: 5.60(5.42)
+2025-08-21 12:54:20,994   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 12:58:50,832   INFO  Train:   36/50 ( 72%) [ 269/408 ( 66%)]  Loss: 3.440 (3.84)  LR: 6.146e-04  Time cost: 24:32/12:37 [2:49:22/8:51:43]  Acc_iter 14550       Data time: 2.34(2.47)  Forward time: 0.25(2.97)  Batch time: 2.58(5.44)
+2025-08-21 12:58:50,973   INFO  
+2025-08-21 12:59:23,687   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:03:13,541   INFO  Train:   36/50 ( 72%) [ 319/408 ( 78%)]  Loss: 3.804 (3.82)  LR: 6.071e-04  Time cost: 28:54/08:02 [2:53:44/8:44:10]  Acc_iter 14600       Data time: 2.31(2.47)  Forward time: 2.33(2.94)  Batch time: 4.64(5.41)
+2025-08-21 13:04:23,676   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:08:02,893   INFO  Train:   36/50 ( 72%) [ 369/408 ( 90%)]  Loss: 5.650 (3.85)  LR: 5.996e-04  Time cost: 33:44/03:33 [2:58:34/8:44:23]  Acc_iter 14650       Data time: 4.98(2.49)  Forward time: 2.26(2.98)  Batch time: 7.24(5.46)
+2025-08-21 13:09:19,346   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:11:17,180   INFO  Train:   36/50 ( 72%) [ 407/408 (100%)]  Loss: 7.386 (3.84)  LR: 5.938e-04  Time cost: 36:58/00:05 [3:01:48/8:37:45]  Acc_iter 14688       Data time: 0.32(2.48)  Forward time: 2.46(2.95)  Batch time: 2.79(5.43)
+2025-08-21 13:11:36,361   INFO  Train:   37/50 ( 74%) [   0/408 (  0%)]  Loss: 3.339 (3.34)  LR: 5.937e-04  Time cost: 00:18/2:04:13 [3:02:07/28:59:07]  Acc_iter 14689       Data time: 4.16(4.16)  Forward time: 8.63(8.63)  Batch time: 12.79(12.79)
+2025-08-21 13:12:41,303   INFO  Train:   37/50 ( 74%) [  11/408 (  3%)]  Loss: 5.059 (3.69)  LR: 5.920e-04  Time cost: 01:23/45:52 [3:03:12/10:58:52]  Acc_iter 14700       Data time: 4.10(2.97)  Forward time: 3.65(3.74)  Batch time: 7.76(6.71)
+2025-08-21 13:12:41,413   INFO  
+2025-08-21 13:16:19,016   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:17:00,839   INFO  Train:   37/50 ( 74%) [  61/408 ( 15%)]  Loss: 4.356 (3.70)  LR: 5.845e-04  Time cost: 05:42/31:58 [3:07:32/8:40:39]  Acc_iter 14750       Data time: 2.77(2.52)  Forward time: 2.85(2.96)  Batch time: 5.62(5.49)
+2025-08-21 13:21:18,764   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:21:29,817   INFO  Train:   37/50 ( 74%) [ 111/408 ( 27%)]  Loss: 3.417 (3.73)  LR: 5.769e-04  Time cost: 10:11/27:02 [3:12:01/8:29:51]  Acc_iter 14800       Data time: 2.60(2.43)  Forward time: 2.67(3.01)  Batch time: 5.27(5.44)
+2025-08-21 13:25:42,815   INFO  Train:   37/50 ( 74%) [ 161/408 ( 39%)]  Loss: 3.584 (3.68)  LR: 5.692e-04  Time cost: 14:24/21:58 [3:16:14/8:13:50]  Acc_iter 14850       Data time: 2.28(2.40)  Forward time: 2.72(2.92)  Batch time: 5.01(5.32)
+2025-08-21 13:25:42,925   INFO  
+2025-08-21 13:26:22,955   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:30:32,986   INFO  Train:   37/50 ( 74%) [ 211/408 ( 52%)]  Loss: 3.231 (3.68)  LR: 5.616e-04  Time cost: 19:14/17:53 [3:21:04/8:19:27]  Acc_iter 14900       Data time: 2.56(2.44)  Forward time: 2.07(2.99)  Batch time: 4.64(5.44)
+2025-08-21 13:31:18,541   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:35:04,128   INFO  Train:   37/50 ( 74%) [ 261/408 ( 64%)]  Loss: 3.856 (3.70)  LR: 5.540e-04  Time cost: 23:46/13:20 [3:25:35/8:14:29]  Acc_iter 14950       Data time: -0.31(2.46)  Forward time: 2.85(2.98)  Batch time: 2.55(5.43)
+2025-08-21 13:36:21,401   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:39:39,802   INFO  Train:   37/50 ( 74%) [ 311/408 ( 76%)]  Loss: 3.767 (3.69)  LR: 5.463e-04  Time cost: 28:21/08:49 [3:30:10/8:10:58]  Acc_iter 15000       Data time: 2.57(2.45)  Forward time: 2.61(2.99)  Batch time: 5.18(5.45)
+2025-08-21 13:39:39,926   INFO  
+2025-08-21 13:41:21,554   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:43:58,391   INFO  Train:   37/50 ( 74%) [ 361/408 ( 88%)]  Loss: 3.277 (3.66)  LR: 5.386e-04  Time cost: 32:40/04:14 [3:34:29/8:02:56]  Acc_iter 15050       Data time: 1.93(2.45)  Forward time: 0.89(2.96)  Batch time: 2.82(5.41)
+2025-08-21 13:46:20,215   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:48:05,278   INFO  Train:   37/50 ( 74%) [ 407/408 (100%)]  Loss: 3.901 (3.67)  LR: 5.316e-04  Time cost: 36:47/00:05 [3:38:36/7:58:18]  Acc_iter 15096       Data time: 2.38(2.43)  Forward time: 3.03(2.97)  Batch time: 5.41(5.41)
+2025-08-21 13:48:15,670   INFO  Train:   38/50 ( 76%) [   0/408 (  0%)]  Loss: 2.566 (2.57)  LR: 5.314e-04  Time cost: 00:09/1:05:30 [3:38:46/14:11:32]  Acc_iter 15097       Data time: 3.36(3.36)  Forward time: 3.66(3.66)  Batch time: 7.02(7.02)
+2025-08-21 13:48:31,978   INFO  Train:   38/50 ( 76%) [   3/408 (  1%)]  Loss: 3.376 (3.03)  LR: 5.309e-04  Time cost: 00:25/43:46 [3:39:03/9:32:58]  Acc_iter 15100       Data time: 2.51(2.89)  Forward time: 3.48(2.99)  Batch time: 5.99(5.88)
+2025-08-21 13:52:57,742   INFO  Train:   38/50 ( 76%) [  53/408 ( 13%)]  Loss: 4.897 (3.63)  LR: 5.233e-04  Time cost: 04:51/31:57 [3:43:28/7:52:45]  Acc_iter 15150       Data time: 0.09(2.46)  Forward time: 3.23(2.90)  Batch time: 3.32(5.35)
+2025-08-21 13:52:57,860   INFO  
+2025-08-21 13:53:16,004   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 13:57:35,043   INFO  Train:   38/50 ( 76%) [ 103/408 ( 25%)]  Loss: 3.398 (3.70)  LR: 5.156e-04  Time cost: 09:29/27:48 [3:48:06/7:54:15]  Acc_iter 15200       Data time: 2.50(2.46)  Forward time: 2.98(2.99)  Batch time: 5.49(5.45)
+2025-08-21 13:58:10,060   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:02:22,413   INFO  Train:   38/50 ( 76%) [ 153/408 ( 38%)]  Loss: 3.100 (3.65)  LR: 5.079e-04  Time cost: 14:16/23:38 [3:52:53/7:57:24]  Acc_iter 15250       Data time: 2.82(2.48)  Forward time: 3.01(3.07)  Batch time: 5.83(5.54)
+2025-08-21 14:03:06,474   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:07:20,650   INFO  Train:   38/50 ( 76%) [ 203/408 ( 50%)]  Loss: 3.695 (3.60)  LR: 5.002e-04  Time cost: 19:14/19:20 [3:57:51/8:01:10]  Acc_iter 15300       Data time: 2.43(2.49)  Forward time: 5.02(3.14)  Batch time: 7.45(5.64)
+2025-08-21 14:07:20,769   INFO  
+2025-08-21 14:08:11,883   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:12:12,093   INFO  Train:   38/50 ( 76%) [ 253/408 ( 62%)]  Loss: 3.709 (3.57)  LR: 4.925e-04  Time cost: 24:06/14:42 [4:02:43/7:59:16]  Acc_iter 15350       Data time: 2.85(2.54)  Forward time: 2.71(3.15)  Batch time: 5.57(5.69)
+2025-08-21 14:13:08,546   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:16:39,752   INFO  Train:   38/50 ( 76%) [ 303/408 ( 74%)]  Loss: 4.686 (3.58)  LR: 4.848e-04  Time cost: 28:33/09:51 [4:07:10/7:49:51]  Acc_iter 15400       Data time: 2.79(2.50)  Forward time: 2.18(3.12)  Batch time: 4.97(5.63)
+2025-08-21 14:18:11,187   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:21:10,588   INFO  Train:   38/50 ( 76%) [ 353/408 ( 87%)]  Loss: 2.924 (3.60)  LR: 4.771e-04  Time cost: 33:04/05:08 [4:11:41/7:42:35]  Acc_iter 15450       Data time: 3.01(2.50)  Forward time: 2.11(3.11)  Batch time: 5.12(5.61)
+2025-08-21 14:21:10,706   INFO  
+2025-08-21 14:23:09,151   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:25:42,999   INFO  Train:   38/50 ( 76%) [ 403/408 ( 99%)]  Loss: 3.437 (3.59)  LR: 4.694e-04  Time cost: 37:36/00:27 [4:16:14/7:36:19]  Acc_iter 15500       Data time: -0.12(2.48)  Forward time: 3.19(3.10)  Batch time: 3.07(5.58)
+2025-08-21 14:26:03,955   INFO  Train:   38/50 ( 76%) [ 407/408 (100%)]  Loss: 3.342 (3.59)  LR: 4.688e-04  Time cost: 37:57/00:05 [4:16:35/7:35:40]  Acc_iter 15504       Data time: 3.71(2.48)  Forward time: 2.42(3.10)  Batch time: 6.12(5.58)
+2025-08-21 14:26:18,233   INFO  Train:   39/50 ( 78%) [   0/408 (  0%)]  Loss: 4.182 (4.18)  LR: 4.686e-04  Time cost: 00:13/1:32:40 [4:16:49/18:32:01]  Acc_iter 15505       Data time: 3.62(3.62)  Forward time: 5.12(5.12)  Batch time: 8.74(8.74)
+2025-08-21 14:30:36,372   INFO  Train:   39/50 ( 78%) [  45/408 ( 11%)]  Loss: 3.913 (3.54)  LR: 4.617e-04  Time cost: 04:31/35:44 [4:21:07/7:57:39]  Acc_iter 15550       Data time: 3.97(2.63)  Forward time: 2.60(3.23)  Batch time: 6.58(5.86)
+2025-08-21 14:31:11,012   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:35:09,790   INFO  Train:   39/50 ( 78%) [  95/408 ( 23%)]  Loss: 2.950 (3.41)  LR: 4.540e-04  Time cost: 09:05/29:37 [4:25:40/7:34:24]  Acc_iter 15600       Data time: 0.03(2.57)  Forward time: 3.16(3.08)  Batch time: 3.19(5.65)
+2025-08-21 14:35:09,902   INFO  
+2025-08-21 14:36:06,881   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:39:44,427   INFO  Train:   39/50 ( 78%) [ 145/408 ( 36%)]  Loss: 3.449 (3.39)  LR: 4.464e-04  Time cost: 13:39/24:36 [4:30:15/7:24:37]  Acc_iter 15650       Data time: 2.61(2.52)  Forward time: 3.29(3.08)  Batch time: 5.90(5.60)
+2025-08-21 14:41:05,583   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:44:22,959   INFO  Train:   39/50 ( 78%) [ 195/408 ( 48%)]  Loss: 3.034 (3.38)  LR: 4.387e-04  Time cost: 18:18/19:53 [4:34:54/7:19:03]  Acc_iter 15700       Data time: 2.62(2.51)  Forward time: 2.30(3.08)  Batch time: 4.92(5.59)
+2025-08-21 14:46:04,977   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:48:56,305   INFO  Train:   39/50 ( 78%) [ 245/408 ( 60%)]  Loss: 2.984 (3.38)  LR: 4.311e-04  Time cost: 22:51/15:08 [4:39:27/7:12:14]  Acc_iter 15750       Data time: 2.88(2.51)  Forward time: 2.61(3.06)  Batch time: 5.49(5.57)
+2025-08-21 14:48:56,411   INFO  
+2025-08-21 14:51:08,408   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:53:26,460   INFO  Train:   39/50 ( 78%) [ 295/408 ( 72%)]  Loss: 3.041 (3.42)  LR: 4.235e-04  Time cost: 27:21/10:26 [4:43:57/7:05:20]  Acc_iter 15800       Data time: 2.54(2.50)  Forward time: 3.31(3.04)  Batch time: 5.85(5.54)
+2025-08-21 14:56:06,420   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 14:57:56,979   INFO  Train:   39/50 ( 78%) [ 345/408 ( 85%)]  Loss: 3.456 (3.42)  LR: 4.159e-04  Time cost: 31:52/05:48 [4:48:28/6:59:13]  Acc_iter 15850       Data time: 2.30(2.51)  Forward time: 2.34(3.01)  Batch time: 4.64(5.52)
+2025-08-21 15:01:05,660   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:02:55,806   INFO  Train:   39/50 ( 78%) [ 395/408 ( 97%)]  Loss: 2.624 (3.42)  LR: 4.083e-04  Time cost: 36:51/01:12 [4:53:27/6:58:52]  Acc_iter 15900       Data time: 3.68(2.53)  Forward time: 2.29(3.05)  Batch time: 5.97(5.58)
+2025-08-21 15:02:55,918   INFO  
+2025-08-21 15:03:58,182   INFO  Train:   39/50 ( 78%) [ 407/408 (100%)]  Loss: 4.636 (3.42)  LR: 4.065e-04  Time cost: 37:53/00:05 [4:54:29/6:56:54]  Acc_iter 15912       Data time: 2.13(2.53)  Forward time: 2.40(3.04)  Batch time: 4.53(5.57)
+2025-08-21 15:04:07,781   INFO  Train:   40/50 ( 80%) [   0/408 (  0%)]  Loss: 3.704 (3.70)  LR: 4.063e-04  Time cost: 00:07/53:57 [4:54:38/9:53:34]  Acc_iter 15913       Data time: 2.15(2.15)  Forward time: 5.27(5.27)  Batch time: 7.42(7.42)
+2025-08-21 15:07:23,165   INFO  Train:   40/50 ( 80%) [  37/408 (  9%)]  Loss: 2.989 (3.41)  LR: 4.007e-04  Time cost: 03:23/33:05 [4:57:54/6:36:55]  Acc_iter 15950       Data time: 2.26(2.23)  Forward time: 2.15(3.06)  Batch time: 4.41(5.30)
+2025-08-21 15:09:05,164   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:12:09,833   INFO  Train:   40/50 ( 80%) [  87/408 ( 21%)]  Loss: 3.221 (3.35)  LR: 3.932e-04  Time cost: 08:09/29:47 [5:02:41/6:48:25]  Acc_iter 16000       Data time: 2.30(2.37)  Forward time: 2.52(3.18)  Batch time: 4.81(5.54)
+2025-08-21 15:14:10,612   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:16:39,153   INFO  Train:   40/50 ( 80%) [ 137/408 ( 34%)]  Loss: 3.224 (3.33)  LR: 3.857e-04  Time cost: 12:39/24:51 [5:07:10/6:39:00]  Acc_iter 16050       Data time: 2.20(2.39)  Forward time: 3.22(3.09)  Batch time: 5.42(5.48)
+2025-08-21 15:16:39,268   INFO  
+2025-08-21 15:19:05,237   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:21:13,187   INFO  Train:   40/50 ( 80%) [ 187/408 ( 46%)]  Loss: 3.625 (3.32)  LR: 3.782e-04  Time cost: 17:13/20:14 [5:11:44/6:34:00]  Acc_iter 16100       Data time: 2.08(2.43)  Forward time: 2.64(3.06)  Batch time: 4.72(5.48)
+2025-08-21 15:24:02,682   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:25:27,447   INFO  Train:   40/50 ( 80%) [ 237/408 ( 58%)]  Loss: 3.184 (3.34)  LR: 3.707e-04  Time cost: 21:27/15:25 [5:15:58/6:23:18]  Acc_iter 16150       Data time: 2.43(2.41)  Forward time: 3.01(2.99)  Batch time: 5.44(5.40)
+2025-08-21 15:29:09,441   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:29:54,067   INFO  Train:   40/50 ( 80%) [ 287/408 ( 70%)]  Loss: 3.674 (3.36)  LR: 3.633e-04  Time cost: 25:54/10:52 [5:20:25/6:17:51]  Acc_iter 16200       Data time: 2.12(2.41)  Forward time: 2.46(2.98)  Batch time: 4.58(5.39)
+2025-08-21 15:29:54,184   INFO  
+2025-08-21 15:34:03,476   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:34:15,457   INFO  Train:   40/50 ( 80%) [ 337/408 ( 83%)]  Loss: 3.067 (3.35)  LR: 3.559e-04  Time cost: 30:15/06:21 [5:24:46/6:11:37]  Acc_iter 16250       Data time: 2.58(2.41)  Forward time: 3.28(2.96)  Batch time: 5.86(5.36)
+2025-08-21 15:38:58,163   INFO  Train:   40/50 ( 80%) [ 387/408 ( 95%)]  Loss: 4.002 (3.33)  LR: 3.486e-04  Time cost: 34:58/01:53 [5:29:29/6:09:38]  Acc_iter 16300       Data time: 2.55(2.42)  Forward time: 2.08(2.98)  Batch time: 4.64(5.40)
+2025-08-21 15:39:02,424   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:40:37,731   INFO  Train:   40/50 ( 80%) [ 407/408 (100%)]  Loss: 3.254 (3.32)  LR: 3.456e-04  Time cost: 36:37/00:05 [5:31:08/6:06:24]  Acc_iter 16320       Data time: 2.20(2.41)  Forward time: 2.50(2.97)  Batch time: 4.70(5.38)
+2025-08-21 15:40:46,787   INFO  Train:   41/50 ( 82%) [   0/408 (  0%)]  Loss: 2.627 (2.63)  LR: 3.455e-04  Time cost: 00:08/56:23 [5:31:17/9:23:52]  Acc_iter 16321       Data time: 3.13(3.13)  Forward time: 2.94(2.94)  Batch time: 6.07(6.07)
+2025-08-21 15:43:22,482   INFO  Train:   41/50 ( 82%) [  29/408 (  7%)]  Loss: 2.355 (3.25)  LR: 3.413e-04  Time cost: 02:43/34:31 [5:33:53/6:09:03]  Acc_iter 16350       Data time: 2.29(2.43)  Forward time: 2.65(2.96)  Batch time: 4.94(5.39)
+2025-08-21 15:43:22,586   INFO  
+2025-08-21 15:45:42,022   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:47:49,975   INFO  Train:   41/50 ( 82%) [  79/408 ( 19%)]  Loss: 3.019 (3.23)  LR: 3.340e-04  Time cost: 07:11/29:34 [5:38:21/5:59:39]  Acc_iter 16400       Data time: 2.38(2.45)  Forward time: 2.13(2.92)  Batch time: 4.51(5.37)
+2025-08-21 15:50:41,599   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:52:25,862   INFO  Train:   41/50 ( 82%) [ 129/408 ( 32%)]  Loss: 3.273 (3.22)  LR: 3.267e-04  Time cost: 11:47/25:18 [5:42:57/5:58:18]  Acc_iter 16450       Data time: 4.41(2.48)  Forward time: 3.15(2.94)  Batch time: 7.56(5.42)
+2025-08-21 15:55:42,147   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
+2025-08-21 15:57:08,793   INFO  Train:   41/50 ( 82%) [ 179/408 ( 44%)]  Loss: 2.681 (3.24)  LR: 3.195e-04  Time cost: 16:30/20:59 [5:47:39/5:57:41]  Acc_iter 16500       Data time: 5.00(2.49)  Forward time: 2.76(3.00)  Batch time: 7.76(5.49)
+2025-08-21 15:57:08,901   INFO  
+2025-08-21 16:00:39,245   INFO  Save latest model to /home/lidar/OpenPCDet/output/nuscenes_models/cbgs_voxel0075_res3d_centerpoint_50Ep_rev1/default/ckpt/latest_model
